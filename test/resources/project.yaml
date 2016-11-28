@@ -1,0 +1,3 @@
+path: "foo",
+dependencies:
+    mythic: "1.0"
