@@ -1,34 +1,35 @@
-class Version
-  def initialize(major, minor)
-    @major = major
-    @minor = minor
-  end
-
-  def Version.from_string(string)
-    match = string.match /(\d+)\.(\d+)/
-    raise "Invalid version: #{string}" if !match
-    major = match[1].to_i
-    minor = match[2].to_i
-    Version.new(major, minor)
-  end
-
-  def matches(version)
-    @major == version.major && @minor == version.minor
-  end
-end
+require 'version'
 
 class Unit
+  attr_reader :name
+  attr_reader :dependencies
+  attr_reader :dependents
+  attr_reader :path
+  attr_accessor :url
+
   def initialize(name)
     @name = name
+    @dependencies = []
+    @dependents = []
+    @path = ''
+    @url = ''
   end
+
+  def add_dependency(unit, version)
+    @dependencies << Unit_Reference.new(unit, version)
+    unit.add_dependent(self)
+  end
+
+  def add_dependent(unit)
+    @dependents << unit
+  end
+
 end
 
-class Single_Version_Range
-  def initialize(version)
-    @version = version
-  end
+class Unit_Reference
 
-  def matches(version)
-    @version.matches version
+  def initialize(unit, version)
+    @unit = unit
+    @version = version
   end
 end
