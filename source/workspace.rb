@@ -31,9 +31,4 @@ class Workspace
     Workspace.new(projects_path, library)
   end
 
-  def clone_missing_projects()
-    @library.units.each do |name, unit|
-      ensure_project_is_present unit, @projects_path
-    end
-  end
 end
