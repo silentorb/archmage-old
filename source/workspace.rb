@@ -5,6 +5,24 @@ require 'registry'
 require 'remote'
 
 class Workspace
+
+  private
+
+  def Workspace.load_config(workspace_path, config_path)
+    json = File.read(workspace_path + '/' + config_path)
+    data = JSON.parse(json)
+    if data.key? 'includes'
+      data['includes'].each do |include_path|
+        data2 = Workspace.load_config(workspace_path, include_path)
+        data.merge!(data2)
+      end
+    end
+
+    data
+  end
+
+  public
+
   attr_reader :projects_path
   attr_reader :library
 
@@ -18,8 +36,7 @@ class Workspace
   end
 
   def Workspace.load(workspace_path)
-    json = File.read(workspace_path + '/workspace.json')
-    data = JSON.parse(json)
+    data = Workspace.load_config(workspace_path, 'workspace.json')
 
     projects_path = Workspace.make_relative workspace_path, data['projects_path']
     registry_path = Workspace.make_relative workspace_path, data['registry_path']

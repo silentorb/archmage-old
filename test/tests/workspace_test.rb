@@ -8,6 +8,7 @@ def create_test_repo(name)
   path = 'test/temp/repos/' + name
   Dir.mkdir path
   File.write(path + '/README.md', '# ' + name + ' documentation')
+  File.write(path + '/LICENSE.txt', 'This can only be used for awesomeness!')
   git = Git.init(path)
   git.add
   git.commit_all 'First commit.'
@@ -33,10 +34,12 @@ class General_Test < Minitest::Test
     assert Dir.exists?('test/temp/projects/audio')
     assert Dir.exists?('test/temp/projects/mythic')
 
-    File.write('test/temp/projects/mythic/README.md', '# ' + name + ' documentation\n\nModified.')
-
+    File.write 'test/temp/projects/mythic/README.md', '# ' + name + ' documentation\n\nModified.'
+    File.write 'test/temp/projects/mythic/Mythic.cpp', '// Nothing here yet.'
+    File.delete 'test/temp/projects/mythic/LICENSE.txt'
     report = get_report(workspace)
     assert_equal 1, report.modified_projects.length
+    assert_equal 3, report.modified_projects[0].files.length
     print_report(report)
 
   end

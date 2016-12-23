@@ -1,3 +1,5 @@
 # Archmage
 
-C++ project management tools by Christopher W. Johnson
+C++ project management tools.  By Christopher W. Johnson.
+
+

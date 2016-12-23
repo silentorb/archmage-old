@@ -34,10 +34,20 @@ class Report
   end
 end
 
+module Git
+  class Status
+    attr_reader :files
+  end
+end
+
 def get_project_status(unit, projects_path)
   full_path = get_path(unit, projects_path)
   git = Git.open full_path
-  git.lib.diff_files
+  status = git.status
+  result = status.files.select {|key, file| file.type || file.untracked}
+  result.each do |key, file|
+    file.type = 'N' if file.untracked
+  end
 end
 
 # def status_is_modified?(status)
@@ -53,7 +63,7 @@ class Modified_Project
     @status = status
   end
 
-  def details()
+  def files()
     @status
   end
 end

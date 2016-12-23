@@ -1,6 +1,6 @@
 {
+  "includes": ["config.json"],
   "projects_path": "../../temp/projects",
-  "registry_path": "../registry",
   "projects": {
     "mythic": "1.0"
   }
