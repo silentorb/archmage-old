@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'workspace'
 require 'git'
 require 'remote'
-require 'cli'
+require 'cli/output'
 
 def create_test_repo(name)
   path = 'test/temp/repos/' + name
