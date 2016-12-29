@@ -1,0 +1,7 @@
+{
+  "includes": ["config.json"],
+  "projects_path": "../../temp/projects",
+  "projects": {
+    "mythic": "1.0"
+  }
+}

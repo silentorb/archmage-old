@@ -1,4 +1,4 @@
-create_executable(archmage)
+create_library(archmage)
 
 include_directories(
   ${BOOST_PATH}

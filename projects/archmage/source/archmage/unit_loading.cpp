@@ -95,7 +95,7 @@ namespace archmage {
     return stream.str();
   }
 
-  Project &load_unit_from_string(const std::string &json, Library &library) {
+  Project &load_project_from_string(const std::string &json, Library &library) {
     Unit_Parser handler;
     Reader reader;
     StringStream ss(json.c_str());
@@ -108,9 +108,9 @@ namespace archmage {
 //    return <#initializer#>;
   }
 
-  Project &load_unit_from_file(const std::string &path, Library &library) {
+  Project &load_project_from_file(const std::string &path, Library &library) {
     auto json = load_file(path);
-    return load_unit_from_string(json, library);
+    return load_project_from_string(json, library);
   }
 
   void reference_dependency(const std::string &name, Library &library) {
