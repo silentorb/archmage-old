@@ -24,6 +24,16 @@ endif ()
 
 include("${CMAKE_TOOLS_PATH}/cmake-tools.cmake")
 
+macro(initialize_boost_library name)
+  set(boost_lib_${name} "${BOOST_PATH}/bin.v2/libs/${name}/build/${BOOST_SUBDIRECTORY}/debug/libboost_${name}${BOOST_LIBRARY_SUFFIX}")
+  file(COPY ${boost_lib_${name}} DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+endmacro()
+
+initialize_boost_library(filesystem)
+initialize_boost_library(regex)
+initialize_boost_library(system)
+
+add_subdirectory(projects/repoman)
 add_subdirectory(projects/archmage)
 add_subdirectory(projects/archmage_cli)
 add_subdirectory(projects/archmage_test)
