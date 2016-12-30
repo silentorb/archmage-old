@@ -1,7 +1,7 @@
 #include "Version.h"
 #include <boost/regex.hpp>
 
-namespace archmage {
+namespace projection {
 
   Version::Version(const std::string &pattern) {
 

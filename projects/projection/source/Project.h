@@ -5,7 +5,7 @@
 #include <memory>
 #include "Version.h"
 
-namespace archmage {
+namespace projection {
 
   class Project_Reference;
 
@@ -19,7 +19,7 @@ namespace archmage {
   public:
       Project(const std::string &name) : name(name) {}
 
-      void add_dependency(Project &dependency, std::shared_ptr<Version_Range> &version_range) {
+      void add_dependency(Project &dependency, Version_Range &version_range) {
         dependencies.emplace_back(dependency, version_range);
         dependency.dependents.push_back(this);
       }
@@ -35,14 +35,30 @@ namespace archmage {
       const std::vector<Project *> &get_dependents() const {
         return dependents;
       }
+
+      const std::string &get_url() const {
+        return url;
+      }
+
+      void set_url(const std::string &value) {
+        url = value;
+      }
+
+      const std::string &get_path() const {
+        return path;
+      }
+
+      void set_path(const std::string &value) {
+        path = value;
+      }
   };
 
   class Project_Reference {
       Project &unit;
-      std::shared_ptr<Version_Range> version;
+      Version_Range version;
 
   public:
-      Project_Reference(Project &unit, std::shared_ptr<Version_Range> &version) :
+      Project_Reference(Project &unit, Version_Range &version) :
         unit(unit), version(version) {}
   };
 }

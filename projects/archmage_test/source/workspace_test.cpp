@@ -2,9 +2,12 @@
 #include <boost/filesystem.hpp>
 #include <Repository.h>
 #include <iostream>
+#include <loading/workspace_loader.h>
+#include <remote.h>
 
 using namespace boost;
 using namespace std;
+using namespace projection;
 
 void create_file(const string &name, const string &contents) {
   ofstream file(name);
@@ -52,6 +55,7 @@ void setup() {
   }
 
   filesystem::create_directories("temp/repos");
+  filesystem::create_directories("temp/projects");
   create_test_repo("audio");
   create_test_repo("mythic");
 }
@@ -59,6 +63,11 @@ void setup() {
 TEST(Workspace, general) {
   setup();
 
-//  ASSERT_TRUE(false);
-//  EXPECT_EQ(60, 1);
+  auto workspace = load_workspace_from_file("resources/workspace/workspace.json");
+
+  EXPECT_EQ(2, workspace->get_library().get_projects().size());
+
+  clone_missing_projects(*workspace);
+  ASSERT_TRUE(filesystem::exists("temp/projects/audio"));
+  ASSERT_TRUE(filesystem::exists("temp/projects/mythic"));
 }

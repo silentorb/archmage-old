@@ -6,17 +6,23 @@
 #include <vector>
 #include <map>
 
-namespace archmage {
+namespace projection {
 
-  class Unit_Source {
-  public:
-      virtual std::unique_ptr<Project> get_unit(const std::string &name) = 0;
-  };
+//  class Unit_Source {
+//  public:
+//      virtual std::unique_ptr<Project> get_project(const std::string &name) = 0;
+//  };
 
   class Library {
-      std::map<std::string, std::unique_ptr<Project>> units;
-      std::map<std::string, std::unique_ptr<Project>> incomplete_units;
+      std::map<std::string, std::unique_ptr<Project>> projects;
+      std::map<std::string, std::unique_ptr<Project>> incomplete_projects;
 
-      Project *get_unit_or_null(const std::string &name) const;
+  public:
+      Project *get_project_or_null(const std::string &name) const;
+      Project &create_project(const std::string &name);
+
+      const std::map<std::string, std::unique_ptr<Project>> &get_projects() const {
+        return projects;
+      }
   };
 }

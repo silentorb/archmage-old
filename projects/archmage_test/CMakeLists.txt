@@ -13,3 +13,5 @@ if (MINGW)
 elseif (MSVC)
 
 endif ()
+
+add_resources(resources)

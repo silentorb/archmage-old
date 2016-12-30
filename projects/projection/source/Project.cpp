@@ -1,5 +1,5 @@
 #include "Project.h"
 
-namespace archmage {
+namespace projection {
 
 }

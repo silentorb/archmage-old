@@ -33,6 +33,8 @@ initialize_boost_library(filesystem)
 initialize_boost_library(regex)
 initialize_boost_library(system)
 
+#add_definitions("-DRAPIDJSON_ASSERT(x)")
+
 add_subdirectory(projects/repoman)
 add_subdirectory(projects/projection)
 add_subdirectory(projects/projection_cpp)
