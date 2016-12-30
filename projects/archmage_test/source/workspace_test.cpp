@@ -3,7 +3,7 @@
 #include <Repository.h>
 #include <iostream>
 #include <loading/workspace_loader.h>
-#include <remote.h>
+#include <archmage/remote.h>
 
 using namespace boost;
 using namespace std;
@@ -20,6 +20,7 @@ void create_test_repo(const string &name) {
   create_file(path + "/README.md", "# " + name + " documentation");
   create_file(path + "/LICENSE.txt", "This can only be used for awesomeness!");
   repoman::Repository repo(path);
+  repo.initialize();
   repo.add_all();
   repo.commit("First commit.");
 }
@@ -68,6 +69,7 @@ TEST(Workspace, general) {
   EXPECT_EQ(2, workspace->get_library().get_projects().size());
 
   clone_missing_projects(*workspace);
-  ASSERT_TRUE(filesystem::exists("temp/projects/audio"));
-  ASSERT_TRUE(filesystem::exists("temp/projects/mythic"));
+
+  ASSERT_TRUE(filesystem::exists("temp/projects/audio/LICENSE.txt"));
+  ASSERT_TRUE(filesystem::exists("temp/projects/mythic/README.md"));
 }

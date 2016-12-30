@@ -1,4 +1,5 @@
 #include <boost/filesystem/operations.hpp>
+#include <Repository.h>
 #include "remote.h"
 #include "Library.h"
 
@@ -21,7 +22,9 @@ namespace projection {
       return;
 
     filesystem::create_directories(full_path);
-
+//    filesystem::create_directories(filesystem:: path(full_path).parent_path());
+    repoman::Repository repo(full_path);
+    repo.clone(project.get_url());
   }
 
   void clone_missing_projects(Workspace &workspace) {

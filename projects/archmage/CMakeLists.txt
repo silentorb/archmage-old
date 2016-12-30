@@ -1,9 +1,8 @@
 create_library(archmage)
-require(repoman projection projection_cpp)
+require(repoman projection projection_cpp archmage_loading)
 
 include_directories(
   ${BOOST_PATH}
-  ${RAPIDJSON_PATH}/include
 )
 
 target_link_libraries(archmage ${boost_lib_filesystem} ${boost_lib_regex} ${boost_lib_system})

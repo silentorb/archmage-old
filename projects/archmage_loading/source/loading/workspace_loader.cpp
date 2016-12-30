@@ -1,8 +1,9 @@
 #include "workspace_loader.h"
 #include "rapidjson/document.h"
 #include <boost/filesystem/path.hpp>
-#include <Registry.h>
+#include "../../../archmage/source/Registry.h"
 #include <boost/filesystem/operations.hpp>
+#include <pathing.h>
 #include "Project_Source.h"
 #include "load_file.h"
 
@@ -36,25 +37,15 @@ namespace projection {
     }
   }
 
-  std::string make_relative(const filesystem::path &workspace_path, const filesystem::path &path) {
-    string joined = (workspace_path / path).string();
-    std::replace(joined.begin(), joined.end(), '\\', '/');
-//    auto joined = filesystem::path(joined_path);
-
-    string result = filesystem::canonical(joined).string();
-    std::replace(result.begin(), result.end(), '\\', '/');
-    return result;
-  }
-
   std::unique_ptr<Workspace> load_workspace_from_file(const std::string &path) {
     Document document;
     auto boost_path = filesystem::path(path);
-    auto workspace_path = boost_path.parent_path();
+    auto workspace_path = boost_path.parent_path().string();
     auto filename = boost_path.filename().string();
-    load_config(document, workspace_path.string(), filename);
+    load_config(document, workspace_path, filename);
 
-    auto registry_path = make_relative(workspace_path, document["registry_path"].GetString());
-    auto projects_path = make_relative(workspace_path, document["projects_path"].GetString());
+    auto registry_path = pathing::relative(workspace_path, document["registry_path"].GetString());
+    auto projects_path = pathing::relative(workspace_path, document["projects_path"].GetString());
 
     auto workspace = unique_ptr<Workspace>(new Workspace(
       projects_path,

@@ -16,7 +16,7 @@ namespace projection {
     if (project)
       return *project;
 
-    return load_project_from_file(path + "/projects/" + name + ".json", *this);
+    return load_project_from_file(path + "/projects/" + name + ".json", *this, path);
   }
 
 }

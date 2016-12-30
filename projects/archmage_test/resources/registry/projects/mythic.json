@@ -1,6 +1,6 @@
 {
   "name": "mythic",
-  "url": "file://e:/dev/archmage/test/temp/repos/mythic",
+  "url": "../../temp/repos/mythic",
   "dependencies": {
     "audio": "1.1"
   },
