@@ -14,14 +14,15 @@ namespace projection {
 //  };
 
   class Library {
-      std::map<std::string, std::unique_ptr<Project>> projects;
+      std::vector<Project *> projects;
+      std::map<std::string, std::unique_ptr<Project>> projects_map;
       std::map<std::string, std::unique_ptr<Project>> incomplete_projects;
 
   public:
       Project *get_project_or_null(const std::string &name) const;
       Project &create_project(const std::string &name);
 
-      const std::map<std::string, std::unique_ptr<Project>> &get_projects() const {
+      const std::vector<Project *> &get_projects() const {
         return projects;
       }
   };

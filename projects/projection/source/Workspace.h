@@ -32,5 +32,11 @@ namespace projection {
       Library &get_library() const {
         return *library;
       }
+
+      const std::vector<Project *> &get_projects() const {
+        return library->get_projects();
+      }
+
+      const std::string get_project_path(Project &project);
   };
 }

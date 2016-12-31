@@ -1,5 +1,5 @@
 create_test(archmage_test)
-require(archmage repoman)
+require(archmage repoman archmage_reporting)
 
 link_external_static(googletest gtest)
 target_link_libraries(archmage_test ${boost_lib_filesystem} ${boost_lib_system} ${GIT_PATH}/lib/libgit2.dll.a)

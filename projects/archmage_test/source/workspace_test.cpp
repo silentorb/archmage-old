@@ -4,6 +4,7 @@
 #include <iostream>
 #include <loading/workspace_loader.h>
 #include <archmage/remote.h>
+#include <archmage/reporting/Workspace_Report.h>
 
 using namespace boost;
 using namespace std;
@@ -66,10 +67,18 @@ TEST(Workspace, general) {
 
   auto workspace = load_workspace_from_file("resources/workspace/workspace.json");
 
-  EXPECT_EQ(2, workspace->get_library().get_projects().size());
+  EXPECT_EQ(2, workspace->get_projects().size());
 
   clone_missing_projects(*workspace);
 
   ASSERT_TRUE(filesystem::exists("temp/projects/audio/LICENSE.txt"));
   ASSERT_TRUE(filesystem::exists("temp/projects/mythic/README.md"));
+
+  create_file("temp/projects/mythic/README.md", "# Mythic documentation\n\nModified.");
+  create_file("temp/projects/mythic/Mythic.cpp", "// Nothing here yet.");
+  filesystem::remove("temp/projects/mythic/License.txt");
+
+  auto report = archmage::reporting::Workspace_Report(*workspace);
+  EXPECT_EQ(1, report.get_changed_projects().size());
+  EXPECT_EQ(3, report.get_changed_projects()[0]->get_changed_files().size());
 }
