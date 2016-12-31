@@ -20,7 +20,7 @@ namespace projection {
 
   public:
       Project *get_project_or_null(const std::string &name) const;
-      Project &create_project(const std::string &name);
+      Project &create_project(const std::string &name, const Version &version);
 
       const std::vector<Project *> &get_projects() const {
         return projects;

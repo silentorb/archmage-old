@@ -1,8 +1,8 @@
 create_test(archmage_test)
-require(archmage repoman archmage_reporting)
+require(archmage repoman archmage_reporting archmage_cli_library)
 
 link_external_static(googletest gtest)
-target_link_libraries(archmage_test ${boost_lib_filesystem} ${boost_lib_system} ${GIT_PATH}/lib/libgit2.dll.a)
+target_link_libraries(archmage_test ${boost_lib_regex} ${boost_lib_filesystem} ${boost_lib_system} ${GIT_PATH}/lib/libgit2.dll.a)
 
 include_directories(
   ${BOOST_PATH}

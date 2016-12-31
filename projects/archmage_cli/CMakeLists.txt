@@ -1,5 +1,5 @@
 create_executable(archmage_cli)
-require(archmage)
+require(archmage_cli_library)
 
 include_directories(
   ${BOOST_PATH}

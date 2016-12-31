@@ -13,11 +13,13 @@ namespace projection {
       std::string name;
       std::string url;
       std::string path;
+      Version version;
       std::vector<Project_Reference> dependencies;
       std::vector<Project *> dependents;
 
   public:
-      Project(const std::string &name) : name(name) {}
+      Project(const std::string &name, const Version &version) :
+        name(name), version(version) {}
 
       void add_dependency(Project &dependency, Version_Range &version_range) {
         dependencies.emplace_back(dependency, version_range);
@@ -50,6 +52,10 @@ namespace projection {
 
       void set_path(const std::string &value) {
         path = value;
+      }
+
+      const Version & get_version()const {
+        return version;
       }
   };
 

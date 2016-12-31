@@ -5,6 +5,7 @@
 #include <loading/workspace_loader.h>
 #include <archmage/remote.h>
 #include <archmage/reporting/Workspace_Report.h>
+#include "archmage_cli/output/reporting.h"
 
 using namespace boost;
 using namespace std;
@@ -24,6 +25,7 @@ void create_test_repo(const string &name) {
   repo.initialize();
   repo.add_all();
   repo.commit("First commit.");
+  repo.tag_last_commit("1.0.0");
 }
 
 void each_file(const filesystem::path &dir_path,
@@ -60,6 +62,13 @@ void setup() {
   filesystem::create_directories("temp/projects");
   create_test_repo("audio");
   create_test_repo("mythic");
+
+  create_file("temp/repos/audio/README.md", "# Mythic documentation\n\nModified.");
+  repoman::Repository repo("temp/repos/audio");
+  repo.open();
+  repo.add_all();
+  repo.commit("Second commit.");
+  repo.tag_last_commit("1.1.0");
 }
 
 TEST(Workspace, general) {
@@ -81,4 +90,6 @@ TEST(Workspace, general) {
   auto report = archmage::reporting::Workspace_Report(*workspace);
   EXPECT_EQ(1, report.get_changed_projects().size());
   EXPECT_EQ(3, report.get_changed_projects()[0]->get_changed_files().size());
+  cout << endl;
+  archmage::print_report(report);
 }

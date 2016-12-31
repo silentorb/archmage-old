@@ -14,11 +14,11 @@ namespace projection {
     return nullptr;
   }
 
-  Project &Library::create_project(const std::string &name) {
+  Project &Library::create_project(const std::string &name, const Version &version) {
     if (projects_map.count(name))
       throw runtime_error("Duplicate project: " + name + ".");
 
-    auto project = new Project(name);
+    auto project = new Project(name, version);
     projects_map[name] = unique_ptr<Project>(project);
     projects.push_back(project);
     return *project;

@@ -33,7 +33,8 @@ namespace projection {
     for (auto it = projects.MemberBegin(); it != projects.MemberEnd(); ++it) {
       auto name = it->name.GetString();
       auto info = it->value.GetString(); // Will be used eventually
-      project_source.resolve(name);
+      auto version_range = Version_Range(info);
+      project_source.resolve(name, version_range);
     }
   }
 

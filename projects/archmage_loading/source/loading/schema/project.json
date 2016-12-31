@@ -1,0 +1,21 @@
+R"("
+{
+  "title": "project schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "dependencies": {
+      "type": "object"
+    },
+    "url": {
+      "type": "string"
+    }
+  },
+  "required": ["name", "version", "url"]
+}
+)"

@@ -41,6 +41,7 @@ add_subdirectory(projects/projection_cpp)
 add_subdirectory(projects/archmage_loading)
 add_subdirectory(projects/archmage_reporting)
 add_subdirectory(projects/archmage)
+add_subdirectory(projects/archmage_cli_library)
 add_subdirectory(projects/archmage_cli)
 add_subdirectory(projects/archmage_test)
 

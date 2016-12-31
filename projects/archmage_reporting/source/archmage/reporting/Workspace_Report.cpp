@@ -53,7 +53,7 @@ namespace archmage {
       auto full_path = workspace.get_project_path(project);
       repoman::Repository repo(full_path);
       repo.open();
-      auto status = unique_ptr<Project_Status>(new Project_Status());
+      auto status = unique_ptr<Project_Status>(new Project_Status(project));
 
       repo.enumerate_status([& status](const std::string &path, unsigned int flags) {
         auto file_state = translate_state(flags);
