@@ -43,6 +43,6 @@ add_subdirectory(projects/archmage_reporting)
 add_subdirectory(projects/archmage)
 add_subdirectory(projects/archmage_cli_library)
 add_subdirectory(projects/archmage_cli)
-add_subdirectory(projects/archmage_test)
+add_subdirectory(test/archmage_test)
 
 finish_cmake()

@@ -63,12 +63,17 @@ void setup() {
   create_test_repo("audio");
   create_test_repo("mythic");
 
-  create_file("temp/repos/audio/README.md", "# Mythic documentation\n\nModified.");
+  create_file("temp/repos/audio/1.1.txt", "Only in 1.1.0.");
   repoman::Repository repo("temp/repos/audio");
   repo.open();
   repo.add_all();
   repo.commit("Second commit.");
   repo.tag_last_commit("1.1.0");
+
+  filesystem::remove("temp/repos/audio/1.1.txt");
+  repo.add_all();
+  repo.commit("Third commit.");
+  repo.tag_last_commit("1.2.0");
 }
 
 TEST(Workspace, general) {
@@ -82,6 +87,7 @@ TEST(Workspace, general) {
 
   ASSERT_TRUE(filesystem::exists("temp/projects/audio/LICENSE.txt"));
   ASSERT_TRUE(filesystem::exists("temp/projects/mythic/README.md"));
+  ASSERT_TRUE(filesystem::exists("temp/projects/audio/1.1.txt"));
 
   create_file("temp/projects/mythic/README.md", "# Mythic documentation\n\nModified.");
   create_file("temp/projects/mythic/Mythic.cpp", "// Nothing here yet.");
