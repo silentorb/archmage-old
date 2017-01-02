@@ -12,6 +12,7 @@ namespace projection {
       unsigned int major = 0;
       unsigned int minor = UNDEFINED;
       unsigned int patch = UNDEFINED;
+      std::string branch;
 
   public:
       Version(const std::string &source);

@@ -7,7 +7,7 @@ using namespace std;
 namespace projection {
 
   Version::Version(const std::string &source) {
-    boost::regex pattern{R"(^(\d+)(?:\.(\d+))?(?:\.(\d+))?$)"};
+    boost::regex pattern{R"(^(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:\-(\w+))?$)"};
     boost::smatch result;
     if (!boost::regex_search(source, result, pattern))
       throw Invalid_Version_Format(source);
@@ -20,6 +20,10 @@ namespace projection {
       if (result[3].matched) {
         patch = stoul(result[3]);
       }
+    }
+
+    if (result[4].matched) {
+      branch = result[4];
     }
   }
 

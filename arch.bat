@@ -1,2 +1,2 @@
 echo %~dp0
-ruby %~dp0arch.rb %*
+ %~dp0arch.rb %*

@@ -1,0 +1,28 @@
+R"("
+{
+  "title": "workspace schema",
+  "type": "object",
+  "properties": {
+    "includes": {
+      "type": "array"
+    },
+    "projects": {
+      "type": "object"
+    },
+    "projects_path": {
+      "type": "string"
+    },
+    "registry_path": {
+      "type": "string"
+    },
+    "children": {
+      "type": "array"
+    }
+  },
+  "required": [
+    "projects",
+    "projects_path",
+    "registry_path"
+  ]
+}
+)"

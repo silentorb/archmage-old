@@ -3,14 +3,17 @@
 #include <string>
 #include <stdexcept>
 #include <Version.h>
+#include <memory>
 
 namespace projection {
 
   class Project;
 
+  class Library;
+
   class Project_Source {
   public:
-      virtual Project &create_project(const std::string &name, const Version & version) = 0;
+      virtual Project &create_project(const std::string &name, const Version &version) = 0;
       virtual Project &resolve(const std::string &name, const Version_Range &version_range) = 0;
   };
 
@@ -33,4 +36,7 @@ namespace projection {
       Version_Conflict(const Version_Range &version_range, Project &project)
         : runtime_error(""), version_range(version_range), project(project) {}
   };
+
+  using Project_Source_Factory =
+  std::function<std::unique_ptr<Project_Source>(const std::string &path, Library &library)>;
 }

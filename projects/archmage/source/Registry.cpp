@@ -48,4 +48,7 @@ namespace projection {
     return load_project_from_file(project_path + "/" + version.get_full_string() + ".json", *this, path);
   }
 
+  std::unique_ptr<Project_Source> Registry::factory(const std::string &path, Library &library) {
+    return unique_ptr<Project_Source>(new Registry(path, library));
+  }
 }

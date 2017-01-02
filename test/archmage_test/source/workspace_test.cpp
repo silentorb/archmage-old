@@ -5,6 +5,7 @@
 #include <loading/workspace_loader.h>
 #include <archmage/remote.h>
 #include <archmage/reporting/Workspace_Report.h>
+#include <Registry.h>
 #include "archmage_cli/output/reporting.h"
 
 using namespace boost;
@@ -79,7 +80,7 @@ void setup() {
 TEST(Workspace, general) {
   setup();
 
-  auto workspace = load_workspace_from_file("resources/workspace/workspace.json");
+  auto workspace = load_workspace_from_file("resources/workspace/workspace.json", Registry::factory);
 
   EXPECT_EQ(2, workspace->get_projects().size());
 
