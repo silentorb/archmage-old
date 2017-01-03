@@ -1,0 +1,7 @@
+{
+  "projects_path": "projects",
+  "registry_path": "../archmage_registry",
+  "projects": {
+    "repoman": "0.0.0"
+  }
+}
