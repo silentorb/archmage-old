@@ -3,3 +3,4 @@
 cmake-build*
 test/temp
 /config.cmake
+projects/repoman
