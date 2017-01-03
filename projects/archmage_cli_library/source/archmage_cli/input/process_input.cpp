@@ -9,11 +9,11 @@ using namespace std;
 namespace archmage {
 
   void process_input(int argument_count, char *const *arguments) {
-    if (true) {
-      for (int i = 0; i < argument_count; ++i) {
-        cout << to_string(i) << " " << arguments[i] << endl;
-      }
-    }
+//    if (true) {
+//      for (int i = 0; i < argument_count; ++i) {
+//        cout << to_string(i) << " " << arguments[i] << endl;
+//      }
+//    }
 
     Input_Library library;
     Input input(argument_count, arguments, library);

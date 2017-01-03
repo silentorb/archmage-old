@@ -45,7 +45,7 @@ namespace projection {
   }
 
   void load_config(Document &document, const string &workspace_path, const string &config_path) {
-    auto json = load_file(workspace_path + "/" + config_path);
+    auto json = load_file(pathing::join(workspace_path, config_path));
     document.Parse(json.c_str());
     if (document.HasMember("includes")) {
       auto includes = document["includes"].GetArray();

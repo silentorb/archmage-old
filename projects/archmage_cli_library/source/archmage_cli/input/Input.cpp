@@ -5,7 +5,7 @@ using namespace std;
 namespace archmage {
 
   Input::Input(int argument_count, char *const *arguments, const Input_Library &library) {
-    for (int i = 0; i < argument_count; ++i) {
+    for (int i = 1; i < argument_count; ++i) {
       auto argument = string(arguments[i]);
       if (argument[0] == '-') {
         auto flag_definition = library.find_flag(argument);

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include "Library.h"
 
 namespace projection {
@@ -9,6 +10,7 @@ namespace projection {
       std::string projects_path;
       std::string registry_path;
       std::unique_ptr<Library> library;
+      std::vector<std::unique_ptr<Workspace>> children;
 
   public:
       Workspace(const std::string &projects_path, const std::string &registry_path);
