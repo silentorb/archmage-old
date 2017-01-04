@@ -1,5 +1,5 @@
 create_library(archmage)
-require(repoman projection projection_cpp archmage_loading)
+require(repoman projection archmage_cpp archmage_loading)
 
 include_directories(
   ${BOOST_PATH}

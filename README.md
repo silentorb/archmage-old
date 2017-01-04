@@ -4,7 +4,8 @@ Multi-project management tool
 
 Archmage allows you to manage multiple projects across multiple Git repositories with interwoven dependencies.  It was primarily designed to support C++ development but can be used  for other languages too.
 
-Archmage has the following features:
+
+## Features
 
 ### Local Package Manager
 
@@ -33,3 +34,18 @@ Archmage allows the user to create multiple workbenches, each one with different
 ### Third-Party Dependency Abstraction
 
 For large third-party dependencies you will never modify and rarely need to see the source code for, Archmage allows integrating that project into the Archmage workflow while offloading the cloning and compiling into a dependencies directory outside of the active workbench, keeping the usage of the third-party project separate from your own projects.
+
+
+## Installation
+
+### Linux/MinGW
+
+#### boost
+./bootstrap gcc
+./b2 toolset=gcc link=static system regex filesystem
+
+#### libgit2
+cmake -G "MinGW Makefiles" -DBUILD_CLAR=OFF -DCMAKE_INSTALL_PREFIX="../release" ..
+mingw32-make
+mingw32-make install
+

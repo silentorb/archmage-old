@@ -37,7 +37,7 @@ initialize_boost_library(system)
 
 add_subdirectory(projects/repoman)
 add_subdirectory(projects/projection)
-add_subdirectory(projects/projection_cpp)
+add_subdirectory(projects/archmage_cpp)
 add_subdirectory(projects/archmage_loading)
 add_subdirectory(projects/archmage_reporting)
 add_subdirectory(projects/archmage)

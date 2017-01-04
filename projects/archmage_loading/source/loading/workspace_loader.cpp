@@ -13,8 +13,8 @@ using namespace boost;
 
 namespace projection {
 
-  static unique_ptr<SchemaDocument> workspace_schema;
-  static unique_ptr<SchemaValidator> workspace_validator;
+  static unique_ptr <SchemaDocument> workspace_schema;
+  static unique_ptr <SchemaValidator> workspace_validator;
 
   static void initialize_validator() {
     Document schema_document;
@@ -57,10 +57,18 @@ namespace projection {
           string name = it->name.GetString();
           if (name == "projects") {
             auto &projects = it->value;
-            auto &destination_projects = document["projects"];
+            auto &destination = document["projects"];
             for (auto it2 = projects.MemberBegin(); it2 != projects.MemberEnd(); ++it2) {
               if (!document.HasMember(it2->name))
-                document.AddMember(it2->name, it2->value, document.GetAllocator());
+                destination.AddMember(it2->name, it2->value, document.GetAllocator());
+            }
+          }
+          else if (name == "children") {
+            auto &projects = it->value;
+            auto &destination = document["children"];
+            for (auto it2 = projects.MemberBegin(); it2 != projects.MemberEnd(); ++it2) {
+              if (!document.HasMember(it2->name))
+                destination.AddMember(it2->name, it2->value, document.GetAllocator());
             }
           }
           else if (name != "includes" && !document.HasMember(it->name)) {
@@ -81,8 +89,8 @@ namespace projection {
     }
   }
 
-  std::unique_ptr<Workspace> load_workspace_from_file(const std::string &path,
-                                                      const Project_Source_Factory &project_source_factory) {
+  std::unique_ptr <Workspace> load_workspace_from_file(const std::string &path,
+                                                       const Project_Source_Factory &project_source_factory) {
     Document document;
     auto boost_path = filesystem::path(path);
     auto workspace_path = boost_path.parent_path().string();
