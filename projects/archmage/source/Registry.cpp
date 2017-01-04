@@ -11,6 +11,10 @@ namespace projection {
   Registry::Registry(const std::string &path, Library &library) :
     path(path), library(library) {}
 
+  Registry::~Registry() {
+
+  }
+
   Project &Registry::create_project(const std::string &name, const Version &version) {
     return library.create_project(name, version);
   }

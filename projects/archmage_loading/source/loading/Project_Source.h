@@ -13,8 +13,10 @@ namespace projection {
 
   class Project_Source {
   public:
+      virtual ~Project_Source() {}
       virtual Project &create_project(const std::string &name, const Version &version) = 0;
       virtual Project &resolve(const std::string &name, const Version_Range &version_range) = 0;
+      virtual const std:: string get_path() = 0;
   };
 
   class Version_Not_Found : public std::runtime_error {

@@ -16,9 +16,14 @@ namespace projection {
 
   public:
       Registry(const std::string &path, Library &library);
+      virtual ~Registry();
       Project &create_project(const std::string &name, const Version &version) override;
       Project &resolve(const std::string &name, const Version_Range &version_range) override;
       static std::unique_ptr<Project_Source> factory(const std::string &path, Library &library);
+
+      virtual const std::string get_path() override {
+        return path;
+      }
   };
 
 
