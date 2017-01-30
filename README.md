@@ -1,8 +1,8 @@
 # Archmage
 
-Multi-project management tool
+Multi-project development tool
 
-Archmage allows you to manage multiple projects across multiple Git repositories with interwoven dependencies.  It was primarily designed to support C++ development but can be used  for other languages too.
+Archmage allows you to development multiple projects across multiple Git repositories with interwoven dependencies.  It was primarily designed to support C++ development but can be used  for other languages too.
 
 
 ## Features
@@ -17,11 +17,11 @@ Archmage only downloads projects into local folders.  It does not have any form 
 
 ### Versioning
 
-Like any good package manager, Archmage supports robust versioning and dependency version resolution.  It also supports version branching.
+Archmage supports robust versioning and dependency version resolution.  It also supports version branching.
 
 ### Multi-Repository Management
 
-Archmage contains tools to streamline editing multiple Git repositories at once.  View the status of multiple Git projects and bulk commit, pull, and push.
+Archmage contains tools to streamline editing multiple Git repositories at once.  View the status of multiple Git projects, bulk commit, pull, and push.
 
 ### Single Project and Multi-Project Repositories
 

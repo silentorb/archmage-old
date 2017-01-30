@@ -11,6 +11,7 @@ namespace archmage {
   void Input_Library::initialize_commands() {
     commands = {
       {"help", commands::help},
+      {"push", commands::push},
       {"status", commands::status},
     };
   }

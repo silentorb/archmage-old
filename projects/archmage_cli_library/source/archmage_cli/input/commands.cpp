@@ -15,16 +15,22 @@ namespace archmage {
       return projection::load_workspace_from_file("workspace.json", projection::Registry::factory);
     }
 
-    void status(const Input &input) {
-      auto workspace = load_workspace();
-      auto report = archmage::reporting::Workspace_Report(*workspace);
-      cout << endl;
-      archmage::print_report(report);
-      cout << endl;
-    }
-
     void help(const Input &input) {
 
+    }
+
+    void push(const Input &input) {
+      auto workspace = load_workspace();
+      auto report = reporting::Workspace_Report(*workspace);
+
+    }
+
+    void status(const Input &input) {
+      auto workspace = load_workspace();
+      auto report = reporting::Workspace_Report(*workspace);
+      cout << endl;
+      print_report(report);
+      cout << endl;
     }
   }
 }
